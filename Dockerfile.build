@@ -24,12 +24,12 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
-    #添加阿里云的镜像源
+	#添加中科院的镜像源
     && mv /etc/apt/sources.list /etc/apt/sources.list.bak \
-    && echo "deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib" >/etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/debian-security stretch/updates main" >>/etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib" >>/etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib" >>/etc/apt/sources.list \
+    && echo "deb http://mirrors.ustc.edu.cn/debian/ stretch main contrib non-free" >/etc/apt/sources.list \
+    && echo "deb http://mirrors.ustc.edu.cn/debian/ stretch-updates main contrib non-free" >>/etc/apt/sources.list \
+    && echo "deb http://mirrors.ustc.edu.cn/debian/ stretch-backports main contrib non-free" >>/etc/apt/sources.list \
+    && echo "deb http://mirrors.ustc.edu.cn/debian-security/ stretch/updates main contrib non-free" >>/etc/apt/sources.list \
     #安装程序依赖库
     && apt-get update && apt-get install -y \
                libfreetype6-dev \
