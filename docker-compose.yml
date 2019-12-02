@@ -22,6 +22,7 @@ services:
 
   thinkcmf:
     build: .
+    image: thinkcmf/thinkcmf:latest
     network_mode: service:mysql
     restart: always
     container_name: thinkcmf-web
